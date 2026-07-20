@@ -18,6 +18,8 @@
 | 10 | [class-reference.md](10-class-reference.md) | Краткий справочник классов Assembly-CSharp.dll |
 | 11 | [save-system-and-mod-persistence.md](11-save-system-and-mod-persistence.md) | Система сохранений, формат сейвов, хук `GameState.modData` |
 | 12 | [player-state-needs-recovery.md](12-player-state-needs-recovery.md) | Потребности, валюты, репутация, механика обморока |
+| 13 | [economy-markets-currency.md](13-economy-markets-currency.md) | Экономика: рынки, валюты, модель цен, торговые лодки |
+| 14 | [boat-physics-buoyancy-damage.md](14-boat-physics-buoyancy-damage.md) | Физика корпуса: плавучесть, масса, урон и потопление |
 
 ## Предметная область
 
