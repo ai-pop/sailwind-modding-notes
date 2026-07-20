@@ -27,6 +27,7 @@
 | 19 | [world-ports-regions.md](19-world-ports-regions.md) | Регионы, порты (34 макс), локальные карты, граница мира |
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPC: лодки-вейпоинты, рыбаки, PortDude, Shopkeeper, жители |
 | 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Отладчик, скрытый debug-режим (P+N+T), глобальные множители |
+| 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Верфь, кастомизация лодок (зависимости частей), покупка |
 
 ## Предметная область
 
