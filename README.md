@@ -23,6 +23,7 @@
 | 15 | [missions-cargo-mail.md](15-missions-cargo-mail.md) | Миссии: генерация из арбитража, доставка грузов и почты |
 | 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Фреймворк предметов: ShipItem, физика, инвентарь, семейство |
 | 17 | [wind-and-sails.md](17-wind-and-sails.md) | Модель ветра (пассаты, шквалы, шторм) и парусной тяги |
+| 18 | [time-weather-storms.md](18-time-weather-storms.md) | Время (OnNewDay), луна, региональная погода, блуждающие штормы |
 
 ## Предметная область
 
