@@ -22,6 +22,7 @@
 | 14 | [boat-physics-buoyancy-damage.md](14-boat-physics-buoyancy-damage.md) | Физика корпуса: плавучесть, масса, урон и потопление |
 | 15 | [missions-cargo-mail.md](15-missions-cargo-mail.md) | Миссии: генерация из арбитража, доставка грузов и почты |
 | 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Фреймворк предметов: ShipItem, физика, инвентарь, семейство |
+| 17 | [wind-and-sails.md](17-wind-and-sails.md) | Модель ветра (пассаты, шквалы, шторм) и парусной тяги |
 
 ## Предметная область
 
