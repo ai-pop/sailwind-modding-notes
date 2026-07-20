@@ -28,6 +28,7 @@
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPC: лодки-вейпоинты, рыбаки, PortDude, Shopkeeper, жители |
 | 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Отладчик, скрытый debug-режим (P+N+T), глобальные множители |
 | 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Верфь, кастомизация лодок (зависимости частей), покупка |
+| 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка (клёв, натяжение, улов), порча и консервация еды, жидкости |
 
 ## Предметная область
 
