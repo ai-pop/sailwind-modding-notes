@@ -16,6 +16,8 @@
 | 08 | [lookui-hardcoded-strings.md](08-lookui-hardcoded-strings.md) | Полный список зашитых в код UI-строк |
 | 09 | [google-translate-gotchas.md](09-google-translate-gotchas.md) | Особенности неофициального Google Translate endpoint |
 | 10 | [class-reference.md](10-class-reference.md) | Краткий справочник классов Assembly-CSharp.dll |
+| 11 | [save-system-and-mod-persistence.md](11-save-system-and-mod-persistence.md) | Система сохранений, формат сейвов, хук `GameState.modData` |
+| 12 | [player-state-needs-recovery.md](12-player-state-needs-recovery.md) | Потребности, валюты, репутация, механика обморока |
 
 ## Предметная область
 
