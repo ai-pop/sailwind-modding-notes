@@ -26,6 +26,7 @@
 | 18 | [time-weather-storms.md](18-time-weather-storms.md) | Время (OnNewDay), луна, региональная погода, блуждающие штормы |
 | 19 | [world-ports-regions.md](19-world-ports-regions.md) | Регионы, порты (34 макс), локальные карты, граница мира |
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPC: лодки-вейпоинты, рыбаки, PortDude, Shopkeeper, жители |
+| 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Отладчик, скрытый debug-режим (P+N+T), глобальные множители |
 
 ## Предметная область
 
