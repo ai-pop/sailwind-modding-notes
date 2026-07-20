@@ -20,6 +20,8 @@
 | 12 | [player-state-needs-recovery.md](12-player-state-needs-recovery.md) | Потребности, валюты, репутация, механика обморока |
 | 13 | [economy-markets-currency.md](13-economy-markets-currency.md) | Экономика: рынки, валюты, модель цен, торговые лодки |
 | 14 | [boat-physics-buoyancy-damage.md](14-boat-physics-buoyancy-damage.md) | Физика корпуса: плавучесть, масса, урон и потопление |
+| 15 | [missions-cargo-mail.md](15-missions-cargo-mail.md) | Миссии: генерация из арбитража, доставка грузов и почты |
+| 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Фреймворк предметов: ShipItem, физика, инвентарь, семейство |
 
 ## Предметная область
 
