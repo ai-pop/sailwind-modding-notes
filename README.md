@@ -55,6 +55,7 @@
 | 31 | [ocean-waves-inertia.md](31-ocean-waves-inertia.md) | Океан Crest: инерция волнового поля, запрос высоты волны |
 | 28 | [navigation-instruments-world-scale.md](28-navigation-instruments-world-scale.md) | Навигация и вывод масштаба: **1 единица = 1 метр** |
 | 37 | [maps-charts-drawing.md](37-maps-charts-drawing.md) | Карты/чарты: ChartData (линии/точки), рисование, GPS-трек для мода |
+| 41 | [cameras-view-modes.md](41-cameras-view-modes.md) | Камеры: BoatCamera (обзор лодки, InputName 16), CameraFollow, свои камеры |
 
 ### Экономика, миссии, предметы
 | № | Файл | Тема |
