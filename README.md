@@ -32,6 +32,7 @@
 | 24 | [decompilation-coverage-missing-classes.md](24-decompilation-coverage-missing-classes.md) | Покрытие декомпиляции: отсутствующие классы и реконструкция их API |
 | 25 | [sleep-bed-rest.md](25-sleep-bed-rest.md) | Сон, кровать, timeskip и ускорение времени |
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |
+| 27 | [story-quests.md](27-story-quests.md) | Сюжетные квесты: диалоги QuestDude, автомат состояний, награды |
 
 ## Предметная область
 
