@@ -69,6 +69,7 @@
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |
 | 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Спавн предметов в мире, подбор, плавучесть, ящики + взгляд моддера |
 | 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Рабочий пример: плавающие лут-ящики в море (рецепт BepInEx-мода) |
+| 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Рабочий пример: фаст-тревел/телепорт (плавающие координаты, Refs, Blackout) |
 
 ### Население
 | № | Файл | Тема |
