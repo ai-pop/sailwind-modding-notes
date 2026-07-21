@@ -34,6 +34,7 @@
 |---|------|------|
 | 12 | [player-state-needs-recovery.md](12-player-state-needs-recovery.md) | Потребности, валюты, репутация, механика обморока |
 | 25 | [sleep-bed-rest.md](25-sleep-bed-rest.md) | Сон, кровать, timeskip и ускорение времени |
+| 36 | [player-movement-climb-swim.md](36-player-movement-climb-swim.md) | Движение игрока: прыжки, плавание, присед, ванты, анти-застревание |
 
 ### Судно: физика, паруса, управление
 | № | Файл | Тема |
