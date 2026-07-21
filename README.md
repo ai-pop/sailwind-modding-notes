@@ -27,6 +27,7 @@
 | 30 | [global-refs-singletons.md](30-global-refs-singletons.md) | Глобальные ссылки (Refs/RefsDirectory), карта синглтонов, константы |
 | 24 | [decompilation-coverage-missing-classes.md](24-decompilation-coverage-missing-classes.md) | Покрытие декомпиляции: отсутствующие классы и реконструкция их API |
 | 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Отладчик, скрытый debug-режим (P+N+T), глобальные множители |
+| 35 | [audio-mixer-ui-ambient.md](35-audio-mixer-ui-ambient.md) | Звук: микшер-снапшоты, UI-звуки, амбиент по времени суток |
 
 ### Игрок и выживание
 | № | Файл | Тема |
