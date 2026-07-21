@@ -34,6 +34,7 @@
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |
 | 27 | [story-quests.md](27-story-quests.md) | Сюжетные квесты: диалоги QuestDude, автомат состояний, награды |
 | 28 | [navigation-instruments-world-scale.md](28-navigation-instruments-world-scale.md) | Навигация (компас, лаг, флюгер, хронометр) и вывод масштаба: 1 ед. = 1 м |
+| 29 | [anchor-mooring-ropes.md](29-anchor-mooring-ropes.md) | Якорь (авто-зацеп/срыв), швартовка, контроллеры тросов |
 
 ## Предметная область
 
