@@ -43,6 +43,7 @@
 | 17 | [wind-and-sails.md](17-wind-and-sails.md) | Модель ветра (пассаты, шквалы, шторм) и парусной тяги |
 | 29 | [anchor-mooring-ropes.md](29-anchor-mooring-ropes.md) | Якорь (авто-зацеп/срыв), швартовка, контроллеры тросов |
 | 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Верфь, кастомизация лодок (зависимости частей), покупка |
+| 38 | [ropes-rigging-steering.md](38-ropes-rigging-steering.md) | Тросы/такелаж: RopeController, штурвал (пружина руля, фиксация), лебёдки, автопилот |
 
 ### Мир, время, океан
 | № | Файл | Тема |
