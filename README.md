@@ -29,6 +29,7 @@
 | 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Отладчик, скрытый debug-режим (P+N+T), глобальные множители |
 | 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Верфь, кастомизация лодок (зависимости частей), покупка |
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка (клёв, натяжение, улов), порча и консервация еды, жидкости |
+| 24 | [decompilation-coverage-missing-classes.md](24-decompilation-coverage-missing-classes.md) | Покрытие декомпиляции: отсутствующие классы и реконструкция их API |
 
 ## Предметная область
 
