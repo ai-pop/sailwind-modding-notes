@@ -31,6 +31,7 @@
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка (клёв, натяжение, улов), порча и консервация еды, жидкости |
 | 24 | [decompilation-coverage-missing-classes.md](24-decompilation-coverage-missing-classes.md) | Покрытие декомпиляции: отсутствующие классы и реконструкция их API |
 | 25 | [sleep-bed-rest.md](25-sleep-bed-rest.md) | Сон, кровать, timeskip и ускорение времени |
+| 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |
 
 ## Предметная область
 
