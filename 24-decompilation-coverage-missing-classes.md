@@ -14,6 +14,8 @@
 | `FloatingObjectBase` | ~3 | База плавающих объектов. |
 | `ShapeGerstnerBatched` | ~2 | Gerstner-волны Crest. |
 | `Crest.*` | — | Пространство имён океанской библиотеки Crest (кастомный форк). |
+| `UnderwaterEffect` | ~2 | Высота воды у камеры (`cameraWaterHeight`) для плавания. |
+| `BoatAlignNormal` | ~1 | Упрощённая физика лодки вдали от игрока (выравнивание по нормали волны). |
 
 > Присутствующий в репозитории класс `Buoyancy` — это **общая блоб-плавучесть** (заметка 14), но реальная покомпонентная физика конкретной лодки живёт в **`BoatProbes`**, которого в выгрузке нет.
 
@@ -46,20 +48,26 @@ static class GameInput {
 
 ## Реконструкция `InputName` (enum действий)
 
-Числовые значения встречаются как `(InputName)N`. По контексту использования:
+Числовые значения встречаются как `(InputName)N`. По контексту использования (уточнено по всему коду):
 
-| Значение | Вероятное действие | Где используется |
+| Значение | Действие | Где используется |
 |:--:|--------------------|------------------|
-| 0, 1, 2, 3 | Движение (вперёд/назад/влево/вправо) | `GoPointerMovement`, `LookUI` (иконки движения) |
-| 5 | Лебёдка/трос (rope winch) | `GPButtonRopeWinch` |
-| 8 | Основное действие / «use» (ЛКМ-аналог) | `GoPointer` (основной клик), `LookUI` (левая иконка), `MapTableCamera`, `GPButtonSettingsCheckbo` |
-| 9 | Второе действие / «alt use» (ПКМ-аналог) | `GoPointer` (606/623/640), `CrateInventoryUI`, `CrateSealUI`, `MapChart`, `LookUI` (правая иконка) |
-| 10 | Бросок/положить предмет (drop) | `GoPointer` (логика drop, `Settings.autoThrow`) |
-| 11 | Модификатор/доп. клавиша | `GoPointer` (346) |
-| 16 | Камера лодки (переключение/зум) | `BoatCamera` |
-| 17 | Подсказки (toggle hints) | `Hints` |
+| 0 | **Вперёд** (движение; при плавании — ныряние по взгляду) | `GoPointerMovement` (вперёд/поворот), `PlayerSwimming` (dive) |
+| 1 | **Назад** | `GoPointerMovement` |
+| 2 | **Влево/вправо** (strafe) | `GoPointerMovement` |
+| 3 | **Вправо/влево** (strafe) | `GoPointerMovement` |
+| 4 | **Прыжок** (также всплытие при плавании) | `PlayerClimb`, `PlayerSwimming`, `PlayerCrouching` (встать) |
+| 5 | **Трос/лебёдка** (тянуть) | `GPButtonRopeWinch` |
+| 7 | **Присесть / нырнуть вниз** | `PlayerCrouching`, `PlayerSwimming` |
+| 8 | **Основное действие** («use», аналог ЛКМ) | `GoPointer` (клик/подбор), `LookUI` (левая иконка), `MapTableCamera`, `GPButtonSettingsCheckbo` |
+| 9 | **Альт-действие** («alt use», аналог ПКМ) | `GoPointer`, `CrateInventoryUI`, `CrateSealUI`, `MapChart`, `LookUI` (правая иконка), `Sleep` (выход из кровати) |
+| 10 | **Бросок / положить** (drop) | `GoPointer` (логика drop, `Settings.autoThrow`) |
+| 11 | **Модификатор** (при удержании отключает mouse-look) | `MouseLook`, `GoPointer` (346) |
+| 15 | **Открыть инвентарь/потребности** (UI) | `PlayerNeedsUI` (или OVR RawButton 256) |
+| 16 | **Камера лодки** (переключение/зум) | `BoatCamera` |
+| 17 | **Подсказки** (toggle hints) | `Hints` |
 
-> Точные имена enum-констант неизвестны (определения нет); значения надёжны. `GPButtonKeybinding` парсит имя через `Enum.Parse(typeof(InputName), inputName)` — имена задаются строкой в префабе кнопки.
+> Значения 0–4, 7–10, 15–17 надёжны (подтверждены контекстом); 5 и 11 — по единичному использованию. Точные имена enum-констант неизвестны (определения нет). `GPButtonKeybinding` парсит имя через `Enum.Parse(typeof(InputName), inputName)` — имена задаются строкой в префабе кнопки. Движение также идёт через аналоговые оси `GameInput.GetPrimaryVertical/Horizontal`.
 
 ## Реконструкция `BoatProbes` (ядро физики лодки)
 
@@ -67,15 +75,19 @@ static class GameInput {
 
 ```csharp
 class BoatProbes : MonoBehaviour {
+    // Плавучесть
     public float _forceMultiplier;        // ГЛАВНЫЙ множитель плавучести (0 = тонет)
+    public /* точки */ _forcePoints;       // точки приложения силы плавучести
+    public /* ... */ appliedBuoyancyForces;// приложенные силы (визуализация/отладка)
+
+    // Сопротивление воды
     public float _dragInWaterForward;      // сопротивление воды (вперёд)
     public float _dragInWaterRight;        // сопротивление воды (в борт)
-    public float addedHullDrag;
-    public float addedSideDrag;
-    public /* List/Array */ _forcePoints;  // точки приложения силы плавучести
-    public /* ... */ appliedBuoyancyForces;
+    public float addedHullDrag;            // добавленное сопротивление корпуса
+    public float addedSideDrag;            // добавленное боковое сопротивление
 
-    public void ChangeEnginePower(float power);   // «двигатель» (чит Debugger: 0/0.5/2/5/-5/8/50)
+    // «Двигатель»
+    public void ChangeEnginePower(float power);   // чит Debugger: 0/0.5/2/5/-5/8/50
 }
 ```
 
@@ -87,17 +99,30 @@ class BoatProbes : MonoBehaviour {
 ## Реконструкция плавающих объектов и Crest
 
 ```csharp
-class FloatingObjectBase { public bool InWater; /* … */ }
+class FloatingObjectBase {
+    public bool InWater;                  // объект в воде (читает FishingRodFish)
+}
 class SimpleFloatingObject : FloatingObjectBase {
-    public float _raiseObject;            // подъёмная сила
-    public float _dragInWaterRotational;  // вращательное сопротивление
+    public float _raiseObject;            // высота «всплытия» над водой (= ShipItem.floaterHeight)
+    public float _dragInWaterRotational;  // вращательное сопротивление в воде
 }
 
 struct/class SampleHeightHelper {         // Crest: сэмплирование высоты волны
-    void Init(/* ocean, position, … */);
-    float Sample(/* … */);                // высота воды в точке
+    void Init(Vector3 pos, float accuracy, bool _, Object __);
+    bool Sample(ref float result);        // высота воды в точке
 }
 ```
+
+### `UnderwaterEffect` (статический)
+```csharp
+static class UnderwaterEffect {
+    public static float cameraWaterHeight;  // высота воды у камеры (читает PlayerSwimming)
+}
+```
+Источник «высоты воды» для плавания: `PlayerSwimming` лерпит `waterHeight` к `UnderwaterEffect.cameraWaterHeight`.
+
+### `BoatAlignNormal`
+Альтернативный (упрощённый) режим физики лодки — выравнивание по нормали волны вместо полной блоб-плавучести `BoatProbes`. `BoatPerformanceSwitcher` (заметка 14) ожидает **либо** `BoatProbes`, **либо** `BoatAlignNormal`: для лодок вдали от игрока включается лёгкий `BoatAlignNormal`, вблизи — полный `BoatProbes`.
 
 `Ocean` (присутствует) предоставляет высокоуровневые `GetWaterHeightAtLocation2(x, z)` и `GetChoppyAtLocation(x, z)`; низкоуровневая Gerstner-математика (`ShapeGerstnerBatched`, `SampleHeightHelper`) — в отсутствующем модуле Crest.
 
