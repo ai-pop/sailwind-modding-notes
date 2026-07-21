@@ -36,6 +36,7 @@
 | 28 | [navigation-instruments-world-scale.md](28-navigation-instruments-world-scale.md) | Навигация (компас, лаг, флюгер, хронометр) и вывод масштаба: 1 ед. = 1 м |
 | 29 | [anchor-mooring-ropes.md](29-anchor-mooring-ropes.md) | Якорь (авто-зацеп/срыв), швартовка, контроллеры тросов |
 | 30 | [global-refs-singletons.md](30-global-refs-singletons.md) | Глобальные ссылки (Refs/RefsDirectory), карта синглтонов, константы |
+| 31 | [ocean-waves-inertia.md](31-ocean-waves-inertia.md) | Океан Crest: инерция волнового поля, запрос высоты волны |
 
 ## Предметная область
 
