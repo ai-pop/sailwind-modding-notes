@@ -60,6 +60,8 @@
 | 32 | [inventory-cargo-storage.md](32-inventory-cargo-storage.md) | Инвентарь (5 слотов), грузовые носители, цены перевозки/хранения |
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка (клёв, натяжение, улов), порча и консервация еды |
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |
+| 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Спавн предметов в мире, подбор, плавучесть, ящики + взгляд моддера |
+| 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Рабочий пример: плавающие лут-ящики в море (рецепт BepInEx-мода) |
 
 ### Население
 | № | Файл | Тема |
