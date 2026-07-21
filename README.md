@@ -45,6 +45,7 @@
 | 29 | [anchor-mooring-ropes.md](29-anchor-mooring-ropes.md) | Якорь (авто-зацеп/срыв), швартовка, контроллеры тросов |
 | 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Верфь, кастомизация лодок (зависимости частей), покупка |
 | 38 | [ropes-rigging-steering.md](38-ropes-rigging-steering.md) | Тросы/такелаж: RopeController, штурвал (пружина руля, фиксация), лебёдки, автопилот |
+| 40 | [hull-dirt-cleaning.md](40-hull-dirt-cleaning.md) | Грязь корпуса (текстура, ежедневное обрастание) и чистка через MasterPainter |
 
 ### Мир, время, океан
 | № | Файл | Тема |
