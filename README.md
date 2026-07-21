@@ -37,6 +37,7 @@
 | 29 | [anchor-mooring-ropes.md](29-anchor-mooring-ropes.md) | Якорь (авто-зацеп/срыв), швартовка, контроллеры тросов |
 | 30 | [global-refs-singletons.md](30-global-refs-singletons.md) | Глобальные ссылки (Refs/RefsDirectory), карта синглтонов, константы |
 | 31 | [ocean-waves-inertia.md](31-ocean-waves-inertia.md) | Океан Crest: инерция волнового поля, запрос высоты волны |
+| 32 | [inventory-cargo-storage.md](32-inventory-cargo-storage.md) | Инвентарь (5 слотов), грузовые носители, цены перевозки/хранения |
 
 ## Предметная область
 
