@@ -97,15 +97,16 @@ go.GetComponent<SaveablePrefab>().RegisterToSave();   // сохранение
 //   worldPos = FloatingOriginManager.instance.RealPosToShiftingPos(realPos)  (заметка 11)
 ```
 - **Подбор уже работает**: игрок наведётся (GoPointer raycast) и кликнет → `PickUpItem`. Ничего делать не нужно.
-- **Плавание уже работает**: `ItemRigidbody` сам добавит `SimpleFloatingObject` с `_raiseObject = floaterHeight`.
+- **Плавание — НЕ «из коробки»**: `ItemRigidbody` создаёт `SimpleFloatingObject`, но **выключает его** (`ToggleCollider`, каждый кадр) и не включает обратно; тело часто кинематическое. Для реального плавания спавненного предмета нужен **свой поплавок** (Boyant-снап) или патч — **подробно в заметке 43**.
 - **Сохранение**: `RegisterToSave()` → предмет попадёт в `savedPrefabs` сейва (заметка 11) и переживёт загрузку.
 - **Не спавнить вдали** от игрока (как делает `WorldItemSpawner`, порог 100 ед.) — и учитывать сдвиг мира (`outCurrentOffset`), иначе предмет «уедет».
+- **Ящик** (`ShipItemCrate`) подбирается **в руки/на палубу, не в слот инвентаря**; вскрытие → содержимое в `CrateInventory` (заметки 32, 45).
 
 ## Практические выводы
 
-1. **Спавн** = `WorldItemSpawner` (респаун по кулдауну, только в радиусе 100 ед.) + «ритуал» `Instantiate → sold=true → RegisterAsMissionless → freeze kinematic`.
+1. **Спавн** = `WorldItemSpawner` (респаун по кулдауну, только в радиусе 100 ед., **`debugForceKinematic=true`** = заморожен) + «ритуал» `Instantiate → sold=true → RegisterAsMissionless → RegisterToSave`.
 2. **Кулдауны спавнеров** тикают от игрового времени и сохраняются в сейв.
-3. **Все предметы плавают** через `SimpleFloatingObject` (`_raiseObject = floaterHeight`).
-4. **Подбор** полностью обеспечивает `GoPointer` (`PickUpItem`/`DropItem`); удержание у камеры, поворот колесом, декаллизия, красный контур.
-5. **Ящик** (`ShipItemCrate`) — готовый «лут-контейнер»: запечатан (`amount>0`); вскрытие **перекладывает содержимое в инвентарь ящика** (ящик остаётся многоразовым контейнером, не исчезает).
-6. Для своего лута: префаб с `ShipItem`+`SaveablePrefab` → `Instantiate` + `sold=true` + `RegisterToSave` → подбор и плавание работают из коробки.
+3. **Плавучесть спавненного предмета штатно не работает** (floater создаётся, но выключен `ToggleCollider`; см. **заметку 43** — truth table, канон высоты воды, свой поплавок/патч).
+4. **Подбор** полностью обеспечивает `GoPointer` (`PickUpItem`/`DropItem`); удержание у камеры, поворот колесом, декаллизия, красный контур. Ничего не вешать на visual (заметка 44).
+5. **Ящик** (`ShipItemCrate`) — готовый «лут-контейнер»: запечатан (`amount>0`); вскрытие **перекладывает содержимое в инвентарь ящика** (ящик остаётся многоразовым контейнером, не исчезает). `GetComponent<ShipItemCrate>()` цепляет не только грузовые ящики — фильтр в заметке 45.
+6. Для своего лута: префаб с `ShipItem`+`SaveablePrefab` → `Instantiate` + `sold=true` + `RegisterToSave` → **подбор работает из коробки, плавание — нет** (см. заметку 43).

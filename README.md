@@ -65,6 +65,8 @@
 | 15 | [missions-cargo-mail.md](15-missions-cargo-mail.md) | Миссии: генерация из арбитража, доставка грузов и почты |
 | 27 | [story-quests.md](27-story-quests.md) | Сюжетные квесты: диалоги QuestDude, автомат состояний, награды |
 | 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Фреймворк предметов: ShipItem, физика, инвентарь, семейство |
+| 44 | [itemrigidbody-field-map-contract.md](44-itemrigidbody-field-map-contract.md) | `ItemRigidbody`: карта полей, twin-контракт, freeze/unfreeze, master по позиции |
+| 45 | [crate-cargo-prefabs-filter.md](45-crate-cargo-prefabs-filter.md) | Ящики/грузовые префабы: семантика `amount`/`containedPrefab`, фильтр для лута |
 | 32 | [inventory-cargo-storage.md](32-inventory-cargo-storage.md) | Инвентарь (5 слотов), грузовые носители, цены перевозки/хранения |
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка (клёв, натяжение, улов), порча и консервация еды |
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение, степень готовности |

@@ -153,6 +153,111 @@ go.AddComponent<KeepOnSurface>();   // свой поплавок
 3. **Высота воды** берётся из `Ocean.GetWaterHeightAtLocation2(x−choppy, z)` при `canCheckBuoyancyNow[0]==1`, в координатах сцены.
 4. **Рабочий референс** — рыболовный поплавок: динамическое тело + свой включённый `SimpleFloatingObject`.
 
+## Truth table: тип предмета → плавает?
+
+(по логике кода v0.38; для предметов через `ItemRigidbody` согласуется с runtime-наблюдением `floater=False` → тонет)
+
+| Тип предмета | floater создан? | floater `enabled`? | Кинематика по умолчанию | Плавает в ваниле? |
+|--------------|:--:|:--:|--------------------------|:--:|
+| Обычный `ShipItem` (свободный, `sold`) | да | **НЕТ** (выкл. `ToggleCollider`) | стартует кинематиком → динамический, когда свободен/в зоне/playing | фактически **нет** |
+| Магазинный (`!sold`) | да | **НЕТ** | **кинематик** (`!sold` → `flag2`) | нет |
+| Миссионный товар (`Good`) | да | **НЕТ** | как свободный `sold` | нет |
+| World-spawned (`WorldItemSpawner`) | да | **НЕТ** | **кинематик** (`debugForceKinematic=true`) | нет (заморожен на месте) |
+| Рыболовный поплавок (`FishingRodFish`/`ShipItemChipLog`) | свой | **ДА** | динамический | **ДА** |
+| Щепка (`ChipLogRopeEnd`) | свой | **ДА** | динамический | **ДА** |
+| Лодка | `Buoyancy` (блоб), не `SimpleFloatingObject` | — | — | **ДА** (другая система, заметка 14) |
+
+Вывод: у предметов, идущих через штатный `ItemRigidbody`, floater создан, но **выключен** и телом часто управляет кинематика → ванильной плавучести нет. Гарантированно плавают объекты со **своим включённым** `SimpleFloatingObject` на динамическом теле (поплавок, щепка) и лодки (блоб-`Buoyancy`).
+
+## Sequence: spawn → twin → floater → pickup → drop → float
+
+```
+Object.Instantiate(prefab, scenePos, rot)            // создаётся VISUAL (ShipItem)
+  └─ ShipItem.Awake()
+       └─ StartCoroutine(LoadAfterDelay())
+            ├─ CreateRigidbody()                     // TWIN: new GO + ItemRigidbody
+            │     ├─ rigidbody (isKinematic = true)
+            │     └─ floater = AddComponent<SimpleFloatingObject>()  // ENABLED, _raiseObject=floaterHeight
+            ├─ AddCollisionChecker() / AddLODGroup()
+            ├─ [WAIT WaitForEndOfFrame]              // ← twin появляется НЕ синхронно с Instantiate
+            └─ OnLoad()
+  ── (мод) sold = true; Good?.RegisterAsMissionless(); SaveablePrefab.RegisterToSave()
+  ── ItemRigidbody.FixedUpdate() [каждый fixed-кадр]
+       ├─ outOfRange (>600 от камеры)? → ранний выход (+ culling)
+       ├─ ToggleCollider(true)  →  floater.enabled = false      // ← floater ВЫКЛЮЧЕН
+       └─ rigidbody.isKinematic = flag2                          // dynamic, если sold/свободен/в зоне/playing
+  ── игрок: GoPointer raycast по visual-триггеру → клик → PickUpItem()   // в руки (twin следует за visual)
+  ── drop → предмет в мире, TWIN = master по позиции (visual следует за twin)
+  ── плавучесть: штатный floater выкл → для плавания нужен СВОЙ поплавок (Boyant-снап) или патч (ниже)
+```
+
+## Канонический сниппет высоты воды (+ floating origin)
+
+Один блок вместо разрозненных заметок 11/31/34:
+
+```csharp
+// Мгновенная высота поверхности воды в ТЕКУЩЕЙ позиции объекта.
+// Паттерн из Boyant/Buoyancy (v0.38). Вход — SCENE-координаты объекта.
+public static bool TryGetWaterY(Vector3 scenePos, out float y)
+{
+    var o = Ocean.Singleton;
+    y = scenePos.y;                                   // fallback: держать текущий Y
+    if (o == null || o.canCheckBuoyancyNow == null || o.canCheckBuoyancyNow[0] != 1)
+        return false;                                 // Crest не готов → НЕ сэмплировать
+    float chop = o.GetChoppyAtLocation2(scenePos.x, scenePos.z);
+    y = o.GetWaterHeightAtLocation2(scenePos.x - chop, scenePos.z);   // вычесть choppy!
+    return true;
+}
+```
+
+- **Вход = scene xz** (текущая позиция объекта). `GetWaterHeightAtLocation2` **сама тайлит** волновую сетку (`sizeQX/sizeQZ` + дробная часть), поэтому для мгновенного лукапа ручной перевод real↔scene **не нужен**.
+- **Мусорный сэмпл (~0.4)** возникает при: (а) сэмпл, когда `canCheckBuoyancyNow[0] != 1` (данные Crest не готовы), или (б) не вычтен `chop` (`GetChoppyAtLocation2`). Гейт + вычет choppy убирают проблему.
+- **Floating origin** важен для **хранения/сравнения** позиций во времени (спавн-точки, дистанция despawn): хранить в **real** (`ShiftingPosToRealPos`), применять в **scene** (`RealPosToShiftingPos`) — заметка 11. Для мгновенной высоты в текущей позиции — scene напрямую.
+- **Fallback**, если `Ocean`/Crest недоступен: высоту взять неоткуда — держать текущий `y` или фиксированный уровень; снап без высоты невозможен.
+
+## End-to-end чек-лист: «предмет плавает в мире и кликается»
+
+1. `Object.Instantiate(prefab, scenePos, rot)` (visual; `ShipItem` сам создаст twin).
+2. `sold = true`; `GetComponent<Good>()?.RegisterAsMissionless()`; `GetComponent<SaveablePrefab>().RegisterToSave()`.
+3. **Дождаться twin**: `while (itemRigidbodyC == null) yield return null;` (или 1–2 `WaitForEndOfFrame`).
+4. **Плавучесть** — свой поплавок на **twin** (Boyant-снап через `TryGetWaterY`) ИЛИ патч `ToggleCollider` + держать `floater.enabled = true`. **Не на visual.**
+5. **Не кинематик**: `GetItemRigidbody().debugForceKinematic = false`; предмет `sold`, не held/attached/nailed, в зоне 600, `playing`.
+6. **Pickup/unseal работают**: на visual ничего не вешать (триггер-коллайдеры visual = raycast подбора); ящик вскрывается штатно (`CrateSealUI` → `CrateInventory`).
+7. **Save/load**: сам предмет сохраняется через `RegisterToSave` (`savedPrefabs`); состояние своего спавнера (таймер, список instanceId) — в `GameState.modData`.
+
+## Сводные `GameState`-гейты для тикающего/спавнящего мода
+
+| Флаг | Когда | Что гейтить |
+|------|-------|-------------|
+| `GameState.playing` | активная игра | весь тик мода |
+| `GameState.sleeping` | сон | не спавнить/не двигать |
+| `GameState.recovering` | обморок/восстановление | не спавнить |
+| `GameState.currentShipyard != null` | на верфи | не спавнить |
+| `GameState.currentlyLoading` | загрузка сцены | не спавнить, ждать |
+| `Refs.observerMirror == null` | нет позиции игрока | не спавнить |
+| StartMenu / загрузочная анимация | главное меню | не тикать (покрывается `playing == false`) |
+
+Единый гейт:
+```csharp
+bool CanTick() =>
+    GameState.playing && !GameState.sleeping && !GameState.recovering &&
+    GameState.currentShipyard == null && !GameState.currentlyLoading &&
+    Refs.observerMirror != null;
+```
+
+## Антипаттерны (на чем ломаются)
+
+- ❌ **`AddComponent<SimpleFloatingObject>`/`Rigidbody` на VISUAL** → ломает подбор: для свободного предмета master = twin (перезаписывает visual), а триггер-коллайдеры visual используются для raycast. **Физику/поплавок — только на twin.**
+- ❌ **Хранить spawn-позицию в scene-координатах** и применять после сдвига мира → уезжает. Хранить **real**, применять **scene** (заметка 11).
+- ❌ **Сэмпл `GetWaterHeightAtLocation2` при `canCheckBuoyancyNow[0] != 1`** → мусор (~0.4).
+- ❌ **Не вычесть `chop`** (`GetChoppyAtLocation2`) → высота смещена.
+- ❌ **`timer = 0` после пустого `modData`** → нулевой/бесконечный интервал спавна. При отсутствии ключа — инициализировать дефолтом.
+- ❌ **`debugForceKinematic = true`** когда нужно плавание (это заморозка; так делает `WorldItemSpawner`).
+- ❌ **`shipItem.debugForceKinematic`** → CS1061: поле на **`ItemRigidbody`** (`GetItemRigidbody().debugForceKinematic`).
+- ❌ **`UISoundPlayer.instance` на раннем буте** без guard → null. Проверять `instance != null` / try.
+- ❌ **`GetComponent<ShipItemCrate>()` как фильтр «грузовых ящиков»** → ловит `tobacco big`, `apples` (заметка 45).
+- ❌ **Доступ к twin сразу после `Instantiate`** → `itemRigidbodyC == null` (twin создаётся в корутине из `Awake`).
+
 ## Практические выводы
 
 - `SimpleFloatingObject` создаётся на каждом предмете (`_raiseObject = floaterHeight`), но штатный путь `ItemRigidbody.ToggleCollider` переводит его в `enabled = false` без обратного включения в коде игры.
