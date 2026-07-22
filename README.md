@@ -53,6 +53,7 @@
 | 18 | [time-weather-storms.md](18-time-weather-storms.md) | Время (`OnNewDay`), луна, региональная погода, блуждающие штормы |
 | 19 | [world-ports-regions.md](19-world-ports-regions.md) | Регионы, порты (34 макс), локальные карты, граница мира |
 | 31 | [ocean-waves-inertia.md](31-ocean-waves-inertia.md) | Океан Crest: инерция волнового поля, запрос высоты волны |
+| 43 | [item-buoyancy-water.md](43-item-buoyancy-water.md) | Плавучесть предметов и вода: ItemRigidbody/SimpleFloatingObject, кинематика, высота воды, ритуал |
 | 28 | [navigation-instruments-world-scale.md](28-navigation-instruments-world-scale.md) | Навигация и вывод масштаба: **1 единица = 1 метр** |
 | 37 | [maps-charts-drawing.md](37-maps-charts-drawing.md) | Карты/чарты: ChartData (линии/точки), рисование, GPS-трек для мода |
 | 41 | [cameras-view-modes.md](41-cameras-view-modes.md) | Камеры: BoatCamera (обзор лодки, InputName 16), CameraFollow, свои камеры |
