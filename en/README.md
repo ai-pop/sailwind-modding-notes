@@ -1,4 +1,4 @@
-# 🚢 Sailwind — Technical Modding Reference
+# Sailwind — Technical Modding Reference
 
 [![Engine](https://img.shields.io/badge/Unity-2019.1.10f1-blue?logo=unity)]()
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
@@ -7,13 +7,13 @@
 [![Notes](https://img.shields.io/badge/notes-56-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
-> 🇷🇺 [Русская версия → `../README.md`](../README.md)
+> [Russian version → `../README.md`](../README.md)
 
-Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 56 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and **full breakdown of the SailwindItemPhysics v4.2 crash** (held-item twin colliding with boat).
+Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 56 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
 
 ---
 
-## 📋 Quick Start
+## Quick Start
 
 | What you need | Where to find |
 |-----------|-----------|
@@ -24,11 +24,11 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | Hidden debug mode: P+N, press T | [Note 21](21-debugger-cheats-tuning.md) |
 | Incomplete decompilation — which classes are missing | [Note 24](24-decompilation-coverage-missing-classes.md) |
 | Item framework: ShipItem → twin → ItemRigidbody | [Note 16](16-item-framework-shipitem.md) + [44](44-itemrigidbody-field-map-contract.md) |
-| Crash with solid twin collider | [Notes 47–56](#sailwinditemphysics-v42-crash-investigation) |
+| Crash with solid twin collider | [Notes 47–56](#sailwinditemphysics-v42-crash-investigation---round-2-e1e6) |
 
 ---
 
-## 📚 Contents
+## Contents
 
 ### Text, UI, and Input
 | № | File | Topic |
@@ -51,7 +51,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 30 | [global-refs-singletons.md](30-global-refs-singletons.md) | Global references (Refs/RefsDirectory), singletons |
 | 24 | [decompilation-coverage-missing-classes.md](24-decompilation-coverage-missing-classes.md) | Decompilation coverage: missing classes |
 | 21 | [debugger-cheats-tuning.md](21-debugger-cheats-tuning.md) | Debugger, debug mode (P+N+T), multipliers |
-| 35 | [audio-mixer-ui-ambient.md](35-audio-mixer-ambient.md) | Audio: mixer snapshots, UI sounds, ambient |
+| 35 | [audio-mixer-ui-ambient.md](35-audio-mixer-ui-ambient.md) | Audio: mixer snapshots, UI sounds, ambient |
 | 39 | [juicebox-tweens-gamefeel.md](39-juicebox-tweens-gamefeel.md) | Juicebox: tweens, shake, hit-stop, particles |
 
 ### Player and Survival
@@ -96,8 +96,8 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Fishing, food spoilage and preservation |
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Cooking: stove, fuel, boiling/smoking |
 | 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Item spawning, pickup, buoyancy |
-| 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | 🛠 Example: floating loot crates (BepInEx recipe) |
-| 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | 🛠 Example: fast travel/teleport |
+| 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Example: floating loot crates (BepInEx recipe) |
+| 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Example: fast travel/teleport |
 
 ### Population
 | № | File | Topic |
@@ -107,26 +107,26 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 ### SailwindItemPhysics v4.2 crash investigation — Round 1 (A1–A5, B6–B12, C13–C14, D15)
 | № | File | Topic |
 |---|------|------|
-| 47 | [item-holding-pickup-flow.md](47-item-holding-pickup-flow.md) | 🔬 Item holding: end-to-end flow (PickUp→FixedUpdate→Drop), twin vs visual, teleport on hold, `held` lifecycle |
-| 48 | [ocean-height-helper-lifecycle.md](48-ocean-height-helper-lifecycle.md) | 🔬 Ocean height: `SampleHeightHelper` lifecycle, canCheckBuoyancyNow, batch queries, response delay |
-| 49 | [camera-render-shaders.md](49-camera-render-shaders.md) | 🔬 Cameras/shaders: BoatCamera, rendering path, Z-write, depth fog, water surface shader |
-| 50 | [saves-moddata-instanceid.md](50-saves-moddata-instanceid.md) | 🔬 Saves/modData: instanceId, SaveablePrefab, modData persistence, save/load cycle, what's lost |
+| 47 | [item-holding-pickup-flow.md](47-item-holding-pickup-flow.md) | Item holding: end-to-end flow, twin vs visual, teleport on hold, `held` lifecycle |
+| 48 | [ocean-height-helper-lifecycle.md](48-ocean-height-helper-lifecycle.md) | Ocean height: `SampleHeightHelper` lifecycle, canCheckBuoyancyNow, batch queries |
+| 49 | [camera-render-shaders.md](49-camera-render-shaders.md) | Cameras/shaders: BoatCamera, rendering path, Z-write, depth fog |
+| 50 | [saves-moddata-instanceid.md](50-saves-moddata-instanceid.md) | Saves/modData: instanceId, SaveablePrefab, modData persistence, what's lost |
 
 ### SailwindItemPhysics v4.2 crash investigation — Round 2 (E1–E6)
 > Crash/hang when held-item solid twin collider contacts boat.
 
 | № | File | Topic |
 |---|------|------|
-| 51 | [boat-collider-topology-dhow.md](51-boat-collider-topology-dhow.md) | 🔬 **E1:** Boat collider topology (dhow): CapsuleCollider (root), BoatEmbarkCollider, walkCollider, HullPlayerCollider, GO hierarchy |
-| 52 | [layers-collision-matrix-items-boat-player.md](52-layers-collision-matrix-items-boat-player.md) | 🔬 **E2:** Unity layers (0/2/5/8/12/13/14/23/26), collision matrix, why twin (layer 2) collides with CapsuleCollider but player doesn't |
-| 53 | [enterboat-exitboat-flap-mechanism.md](53-enterboat-exitboat-flap-mechanism.md) | 🔬 **E3:** EnterBoat/ExitBoat: trigger callbacks, `frameCounter>1` gate, BoatMass.AddItem idempotent, ≥22 Hz flap scenario |
-| 54 | [go-pointer-big-item-decollision.md](54-go-pointer-big-item-decollision.md) | 🔬 **E4:** Big-item decollision in GoPointer: **no while loops**, ComputePenetration single-pass, Boat tag excluded, self-interaction risk |
-| 55 | [crash-scenarios-boat-item-collision.md](55-crash-scenarios-boat-item-collision.md) | 🔬 **E5:** Crash scenarios: twin Untagged → BoatDamage.Impact **not filtered** → hullDamage 0.15/s, physics solver loop → frame time explosion |
-| 56 | [nailed-wallattachment-deck-placement.md](56-nailed-wallattachment-deck-placement.md) | 🔬 **E6:** nailed (kinematic lock), wallAttachment (raycast+snap+attached), HangableItem (ConfigurableJoint), deck placement vanilla vs mod |
+| 51 | [boat-collider-topology-dhow.md](51-boat-collider-topology-dhow.md) | **E1:** Boat collider topology (dhow): CapsuleCollider (root), BoatEmbarkCollider, walkCollider, HullPlayerCollider, GO hierarchy |
+| 52 | [layers-collision-matrix-items-boat-player.md](52-layers-collision-matrix-items-boat-player.md) | **E2:** Unity layers (0/2/5/8/12/13/14/23/26), collision matrix, why twin (layer 2) collides with CapsuleCollider but player doesn't |
+| 53 | [enterboat-exitboat-flap-mechanism.md](53-enterboat-exitboat-flap-mechanism.md) | **E3:** EnterBoat/ExitBoat: trigger callbacks, `frameCounter>1` gate, BoatMass.AddItem idempotent, ≥22 Hz flap |
+| 54 | [go-pointer-big-item-decollision.md](54-go-pointer-big-item-decollision.md) | **E4:** Big-item decollision: no while loops, ComputePenetration single-pass, Boat tag excluded |
+| 55 | [crash-scenarios-boat-item-collision.md](55-crash-scenarios-boat-item-collision.md) | **E5:** Crash scenarios: twin Untagged → BoatDamage.Impact not filtered → hullDamage 0.15/s |
+| 56 | [nailed-wallattachment-deck-placement.md](56-nailed-wallattachment-deck-placement.md) | **E6:** nailed (kinematic lock), wallAttachment (raycast+snap), HangableItem, deck placement |
 
 ---
 
-## 🔧 Technical Information
+## Technical Information
 
 ### Decompilation
 
@@ -144,7 +144,7 @@ Every `ShipItem` has two GameObjects:
 - **Visual GO** (`ShipItem` + Rigidbody kinematic + Collider isTrigger) — what player sees, raycast, interact
 - **Twin GO** (`ItemRigidbody` + Rigidbody dynamic + Collider isTrigger in vanilla / non-trigger in mod) — physics, buoyancy, `EnterBoat`/`ExitBoat`
 
-In vanilla twin = isTrigger → "transparent" for boat CapsuleCollider. Mod SailwindItemPhysics v4.2 makes twin non-trigger → twin **physically collides** with CapsuleCollider → crash scenarios 51–55.
+In vanilla twin = isTrigger — "transparent" for boat CapsuleCollider. Mod SailwindItemPhysics v4.2 makes twin non-trigger — twin physically collides with CapsuleCollider, leading to crash scenarios analyzed in notes 51–55.
 
 ### Unity specifics of Sailwind
 
@@ -155,11 +155,11 @@ In vanilla twin = isTrigger → "transparent" for boat CapsuleCollider. Mod Sail
 | Layers | 0=Default, 2=IgnoreRaycast(twin), 5=UI, 8=Player, 12=HullPlayerCollider(walkCol), 13=Boat, 14=Terrain, 23=Map, 26=Crate (note 52) |
 | Raycast mask | `LayerMask.op_Implicit(-604165)` — GoPointer sees most layers, doesn't see 2/5 |
 | Fixed timestep | `fixedDeltaTime = 0.022s` (~45.5 Hz physics) |
-| Debug mode | P+N → T → hidden multipliers, kinematic items, disableItemUpdate (note 21) |
+| Debug mode | P+N → T — hidden multipliers, kinematic items, disableItemUpdate (note 21) |
 
 ---
 
-## 🗂 Repository Structure
+## Repository Structure
 
 ```
 sailwind-modding-notes/
@@ -172,7 +172,7 @@ sailwind-modding-notes/
 ```
 
 Each note is a standalone Markdown document with:
-- 🔬 Header, link to research request (for 47–56)
+- Header, link to research request (for 47–56)
 - Field/type/value tables
 - Verbatim bodies of key methods (ILSpy)
 - Sequence diagrams and block diagrams
@@ -180,6 +180,6 @@ Each note is a standalone Markdown document with:
 
 ---
 
-## 📜 License
+## License
 
 MIT — materials are free for use in any Sailwind mods. See [LICENSE](../LICENSE).

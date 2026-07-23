@@ -1,4 +1,4 @@
-# 🚢 Sailwind — Технический справочник мододела
+# Sailwind — Технический справочник мододела
 
 [![Engine](https://img.shields.io/badge/Unity-2019.1.10f1-blue?logo=unity)]()
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
@@ -7,13 +7,13 @@
 [![Notes](https://img.shields.io/badge/notes-56-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
-> 🇬🇧 [English version → `en/README.md`](en/README.md)
+> [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 56 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и **полный разбор бага мода SailwindItemPhysics v4.2** (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 56 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
-## 📋 Быстрый старт
+## Быстрый старт
 
 | Что нужно | Где найти |
 |-----------|-----------|
@@ -24,11 +24,11 @@
 | Скрытый debug-режим: P+N, нажать T | [Заметка 21](21-debugger-cheats-tuning.md) |
 | Неполная декомпиляция — какие классы отсутствуют | [Заметка 24](24-decompilation-coverage-missing-classes.md) |
 | Фреймворк предметов: ShipItem → twin → ItemRigidbody | [Заметка 16](16-item-framework-shipitem.md) + [44](44-itemrigidbody-field-map-contract.md) |
-| Краш мода с твёрдым twin-коллайдером | [Заметки 47–56](#исследование-мода-sailwinditemphysics-v42) |
+| Краш мода с твёрдым twin-коллайдером | [Заметки 47–56](#исследование-мода-sailwinditemphysics-v42---раунд-2-e1e6) |
 
 ---
 
-## 📚 Содержание
+## Содержание
 
 ### Текст, UI и ввод
 | № | Файл | Тема |
@@ -96,8 +96,8 @@
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка, порча и консервация еды |
 | 26 | [cooking-stove-fuel.md](26-cooking-stove-fuel.md) | Кулинария: плита, топливо, варка/копчение |
 | 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Спавн предметов, подбор, плавучесть |
-| 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | 🛠 Пример: плавающие лут-ящики (BepInEx рецепт) |
-| 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | 🛠 Пример: фаст-тревел/телепорт |
+| 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Пример: плавающие лут-ящики (BepInEx рецепт) |
+| 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Пример: фаст-тревел/телепорт |
 
 ### Население
 | № | Файл | Тема |
@@ -107,26 +107,26 @@
 ### Исследование мода SailwindItemPhysics v4.2 — раунд 1 (A1–A5, B6–B12, C13–C14, D15)
 | № | Файл | Тема |
 |---|------|------|
-| 47 | [item-holding-pickup-flow.md](47-item-holding-pickup-flow.md) | 🔬 Удержание предмета: end-to-end flow (PickUp→FixedUpdate→Drop), twin vs visual, teleport при холде, `held` lifecycle |
-| 48 | [ocean-height-helper-lifecycle.md](48-ocean-height-helper-lifecycle.md) | 🔬 Ocean height: `SampleHeightHelper` lifecycle, canCheckBuoyancyNow, batch-запросы, задержка ответа |
-| 49 | [camera-render-shaders.md](49-camera-render-shaders.md) | 🔬 Камеры/шейдеры: BoatCamera, rendering path, Z-write, depth fog, water surface shader |
-| 50 | [saves-moddata-instanceid.md](50-saves-moddata-instanceid.md) | 🔬 Saves/modData: instanceId, SaveablePrefab, modData persistence, save/load cycle, что теряется |
+| 47 | [item-holding-pickup-flow.md](47-item-holding-pickup-flow.md) | Удержание предмета: end-to-end flow, twin vs visual, teleport при холде, `held` lifecycle |
+| 48 | [ocean-height-helper-lifecycle.md](48-ocean-height-helper-lifecycle.md) | Ocean height: `SampleHeightHelper` lifecycle, canCheckBuoyancyNow, batch-запросы |
+| 49 | [camera-render-shaders.md](49-camera-render-shaders.md) | Камеры/шейдеры: BoatCamera, rendering path, Z-write, depth fog |
+| 50 | [saves-moddata-instanceid.md](50-saves-moddata-instanceid.md) | Saves/modData: instanceId, SaveablePrefab, modData persistence, что теряется |
 
 ### Исследование мода SailwindItemPhysics v4.2 — раунд 2 (E1–E6)
 > Краш/зависание при столкновении held-item твёрдого twin-коллайдера с лодкой.
 
 | № | Файл | Тема |
 |---|------|------|
-| 51 | [boat-collider-topology-dhow.md](51-boat-collider-topology-dhow.md) | 🔬 **E1:** Топология коллайдеров лодки (dhow): CapsuleCollider (root), BoatEmbarkCollider, walkCollider, HullPlayerCollider, иерархия GO |
-| 52 | [layers-collision-matrix-items-boat-player.md](52-layers-collision-matrix-items-boat-player.md) | 🔬 **E2:** Слои Unity (0/2/5/8/12/13/14/23/26), матрица столкновений, почему twin (слой 2) сталкивается с CapsuleCollider, а игрок — нет |
-| 53 | [enterboat-exitboat-flap-mechanism.md](53-enterboat-exitboat-flap-mechanism.md) | 🔬 **E3:** EnterBoat/ExitBoat: trigger callbacks, `frameCounter>1` gate, BoatMass.AddItem idempotent, ≥22 Hz flap сценарий |
-| 54 | [go-pointer-big-item-decollision.md](54-go-pointer-big-item-decollision.md) | 🔬 **E4:** Деколлизия big-item в GoPointer: **нет while-циклов**, ComputePenetration single-pass, Boat tag исключён, self-interaction risk |
-| 55 | [crash-scenarios-boat-item-collision.md](55-crash-scenarios-boat-item-collision.md) | 🔬 **E5:** Краш-сценарии: twin Untagged → BoatDamage.Impact **не фильтрует** → hullDamage 0.15/s, physics solver loop → frame time explosion |
-| 56 | [nailed-wallattachment-deck-placement.md](56-nailed-wallattachment-deck-placement.md) | 🔬 **E6:** nailed (kinematic lock), wallAttachment (raycast+snap+attached), HangableItem (ConfigurableJoint), палубная посадка vanilla vs mod |
+| 51 | [boat-collider-topology-dhow.md](51-boat-collider-topology-dhow.md) | **E1:** Топология коллайдеров лодки (dhow): CapsuleCollider (root), BoatEmbarkCollider, walkCollider, HullPlayerCollider, иерархия GO |
+| 52 | [layers-collision-matrix-items-boat-player.md](52-layers-collision-matrix-items-boat-player.md) | **E2:** Слои Unity (0/2/5/8/12/13/14/23/26), матрица столкновений, почему twin (слой 2) сталкивается с CapsuleCollider, а игрок — нет |
+| 53 | [enterboat-exitboat-flap-mechanism.md](53-enterboat-exitboat-flap-mechanism.md) | **E3:** EnterBoat/ExitBoat: trigger callbacks, `frameCounter>1` gate, BoatMass.AddItem idempotent, ≥22 Hz flap |
+| 54 | [go-pointer-big-item-decollision.md](54-go-pointer-big-item-decollision.md) | **E4:** Деколлизия big-item: нет while-циклов, ComputePenetration single-pass, Boat tag исключён |
+| 55 | [crash-scenarios-boat-item-collision.md](55-crash-scenarios-boat-item-collision.md) | **E5:** Краш-сценарии: twin Untagged → BoatDamage.Impact не фильтрует → hullDamage 0.15/s |
+| 56 | [nailed-wallattachment-deck-placement.md](56-nailed-wallattachment-deck-placement.md) | **E6:** nailed (kinematic lock), wallAttachment (raycast+snap), HangableItem, палубная посадка |
 
 ---
 
-## 🔧 Техническая информация
+## Техническая информация
 
 ### Декомпиляция
 
@@ -144,7 +144,7 @@
 - **Visual GO** (`ShipItem` + Rigidbody kinematic + Collider isTrigger) — что видит игрок, raycast, interact
 - **Twin GO** (`ItemRigidbody` + Rigidbody dynamic + Collider isTrigger в vanilla / non-trigger в моде) — физика, buoyancy, `EnterBoat`/`ExitBoat`
 
-В vanilla twin = isTrigger → «прозрачный» для CapsuleCollider лодки. Мод SailwindItemPhysics v4.2 делает twin non-trigger → twin **физически сталкивается** с CapsuleCollider → краш-сценарии 51–55.
+В vanilla twin = isTrigger — «прозрачный» для CapsuleCollider лодки. Мод SailwindItemPhysics v4.2 делает twin non-trigger — twin физически сталкивается с CapsuleCollider, что приводит к краш-сценариям, разобранным в заметках 51–55.
 
 ### Unity-специфика Sailwind
 
@@ -155,11 +155,11 @@
 | Слои | 0=Default, 2=IgnoreRaycast(twin), 5=UI, 8=Player, 12=HullPlayerCollider(walkCol), 13=Boat, 14=Terrain, 23=Map, 26=Crate (заметка 52) |
 | Raycast mask | `LayerMask.op_Implicit(-604165)` — GoPointer видит большинство слоёв, не видит 2/5 |
 | Fixed timestep | `fixedDeltaTime = 0.022s` (~45.5 Hz physics) |
-| Debug mode | P+N → T → скрытые множители, kinematic items, disableItemUpdate (заметка 21) |
+| Debug mode | P+N → T — скрытые множители, kinematic items, disableItemUpdate (заметка 21) |
 
 ---
 
-## 🗂 Структура репозитория
+## Структура репозитория
 
 ```
 sailwind-modding-notes/
@@ -172,7 +172,7 @@ sailwind-modding-notes/
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:
-- 🔬 Заголовком, ссылкой на research request (для 47–56)
+- Заголовком, ссылкой на research request (для 47–56)
 - Таблицами полей/типов/значений
 - Вербатимными телами ключевых методов (ILSpy)
 - Sequence-диаграммами и блок-схемами
@@ -180,6 +180,6 @@ sailwind-modding-notes/
 
 ---
 
-## 📜 Лицензия
+## Лицензия
 
 MIT — материалы свободны для использования в любых модах для Sailwind. См. [LICENSE](LICENSE).
