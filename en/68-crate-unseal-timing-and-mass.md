@@ -58,6 +58,10 @@ rigidbody.mass += containedPrefab.mass * amount; // amount == 0
 
 The Rigidbody receives the **empty shell mass**.
 
+### Unsealing does not destroy the container
+
+`ShipItemCrate.UnsealCrate()` contains no call to `DestroyItem()`, `Destroy(gameObject)`, or `SaveablePrefab.Unregister()`. Vanilla unsealing leaves the same crate GameObject as a container, with `amount == 0` and a `CrateInventory` component. If a crate disappears exactly at unseal, it is not normal `UnsealCrate` behavior: an external cleanup/mod or later range/save logic is responsible.
+
 ## When goods actually enter the crate
 
 At the next `EndOfFrame`, each coroutine calls:

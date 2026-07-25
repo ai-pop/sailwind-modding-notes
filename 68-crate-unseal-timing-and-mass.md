@@ -53,6 +53,10 @@ rigidbody.mass += containedPrefab.mass * amount; // amount == 0
 
 Итог: Rigidbody получает **массу пустой оболочки**.
 
+### Вскрытие не уничтожает контейнер
+
+В теле `ShipItemCrate.UnsealCrate()` нет вызова `DestroyItem()`, `Destroy(gameObject)` или `SaveablePrefab.Unregister()`. Ванильный результат вскрытия — тот же crate GameObject, но с `amount == 0` и компонентом `CrateInventory`; он остаётся контейнером. Если ящик исчезает именно в момент вскрытия, это не штатное действие `UnsealCrate`, а внешний cleanup/мод либо последующая логика дальности/сохранения.
+
 ## Когда предметы реально появляются в ящике
 
 На следующем `EndOfFrame` каждая coroutine вызывает:
