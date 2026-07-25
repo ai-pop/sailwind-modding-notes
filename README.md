@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-71-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-75-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 71 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 75 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -149,6 +149,10 @@
 | 69 | [crate-withdraw-pickup-handoff.md](69-crate-withdraw-pickup-handoff.md) | Извлечение: race container/UI pose → hand pose |
 | 70 | [water-splash-particle-systems.md](70-water-splash-particle-systems.md) | Ванильные water splash ParticleSystem, материалы и Crest точки |
 | 71 | [crest-simplefloatingobject-exact-model.md](71-crest-simplefloatingobject-exact-model.md) | Точный Crest floater: cubic Acceleration, raise, drag и race ownership |
+| 72 | [crest-oceanrenderer-query-contract.md](72-crest-oceanrenderer-query-contract.md) | `OceanRenderer`, providers, GPU/CPU queries, SampleHeight/Flow contract |
+| 73 | [crest-wave-spectrum-lod-simulation.md](73-crest-wave-spectrum-lod-simulation.md) | 14-октавный Gerstner, spectrum, LOD, dynamic waves/flow/foam |
+| 74 | [crest-water-interactions-rendering-origin.md](74-crest-water-interactions-rendering-origin.md) | BoatProbes, interaction, underwater, depth, reflections, Crest origin |
+| 75 | [crest-dll-complete-type-index.md](75-crest-dll-complete-type-index.md) | Полный source-map всех 80 типов `Crest.dll` |
 
 ---
 
@@ -191,10 +195,10 @@
 sailwind-modding-notes/
 ├── README.md                      ← Русский (основной)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 71-*.md   ← 71 заметок (RU)
+├── 01-textmesh-not-tmp.md ... 75-*.md   ← 75 заметок (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 71-*.md   ← 71 заметок (EN)
+    ├── 01-textmesh-not-tmp.md ... 75-*.md   ← 75 заметок (EN)
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:

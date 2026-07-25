@@ -4,7 +4,7 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-71-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-75-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
@@ -149,6 +149,10 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 69 | [crate-withdraw-pickup-handoff.md](69-crate-withdraw-pickup-handoff.md) | Withdrawal race: container/UI pose → hand pose |
 | 70 | [water-splash-particle-systems.md](70-water-splash-particle-systems.md) | Vanilla water-splash ParticleSystems, materials, and Crest paths |
 | 71 | [crest-simplefloatingobject-exact-model.md](71-crest-simplefloatingobject-exact-model.md) | Exact Crest floater: cubic Acceleration, raise, drag, and ownership race |
+| 72 | [crest-oceanrenderer-query-contract.md](72-crest-oceanrenderer-query-contract.md) | `OceanRenderer`, providers, GPU/CPU queries, SampleHeight/Flow contract |
+| 73 | [crest-wave-spectrum-lod-simulation.md](73-crest-wave-spectrum-lod-simulation.md) | 14-octave Gerstner, spectrum, LOD, dynamic waves/flow/foam |
+| 74 | [crest-water-interactions-rendering-origin.md](74-crest-water-interactions-rendering-origin.md) | BoatProbes, interaction, underwater, depth, reflections, Crest origin |
+| 75 | [crest-dll-complete-type-index.md](75-crest-dll-complete-type-index.md) | Complete source map of all 80 `Crest.dll` types |
 
 ---
 
