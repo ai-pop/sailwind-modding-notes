@@ -59,6 +59,9 @@ PrefabsDirectory.ItemToGoodIndex(itemIndex)
 | 07 | [Trade Goods](07-trade-goods.md) | Bulk cargo, crates, barrels, regional goods |
 | 08 | [Data Tables](08-data-tables.md) | Liquids, categories, food states, fish list |
 | 09 | [Supplemental](09-supplemental.md) | Fishing, quests, boat parts, starter sets |
+| 64 | [Physics Model](64-physics-model.md) | ItemRigidbody, buoyancy, isKinematic, mass, decollision |
+
+> Русские версии: [`ru/resources/`](../ru/resources/)
 
 ---
 
