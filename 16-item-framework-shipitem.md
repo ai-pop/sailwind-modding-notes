@@ -47,7 +47,7 @@ GoPointerButton            (интерактивный объект, см. за�
 1. **Основной** (`ShipItem`) — визуал (`Renderer`), триггерные коллайдеры (`isTrigger = true`), LOD.
 2. **`itemRigidbody`** — отдельный runtime-объект с реальным физическим телом (`ItemRigidbody`), создаётся в `CreateRigidbody()` как дочерний «мира» (`FloatingOriginManager`).
 
-Почему: физическое тело живёт в системе координат мира и переиспользуется при входе/выходе с лодки, помещении в инвентарь и т.п. `Rigidbody.collisionDetectionMode = 3` (ContinuousDynamic). В `Awake()` все коллайдеры основного объекта переводятся в триггеры.
+Почему: физическое тело живёт в системе координат мира и переиспользуется при входе/выходе с лодки, помещении в инвентарь и т.п. `Rigidbody.collisionDetectionMode = 3` (`ContinuousSpeculative`; после короткого dynamic window ваниль может временно использовать `2` = `ContinuousDynamic`, см. заметку 67). В `Awake()` все коллайдеры основного объекта переводятся в триггеры.
 
 `ItemRigidbody` дополнительно:
 - держит `SimpleFloatingObject` (`floater`) — предметы **плавают** в воде;

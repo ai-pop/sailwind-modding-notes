@@ -47,7 +47,7 @@ Virtual hooks: `OnPickup()`, `OnDrop()`, `OnScroll()`.
 1. **Main** (`ShipItem`) — visuals (`Renderer`), trigger colliders (`isTrigger = true`), LOD.
 2. **`itemRigidbody`** — separate runtime object with real physics body (`ItemRigidbody`), created in `CreateRigidbody()` as child of the "world" (`FloatingOriginManager`).
 
-Why: the physics body lives in world coordinate space and is reused when entering/exiting the boat, going into inventory, etc. `Rigidbody.collisionDetectionMode = 3` (ContinuousDynamic). In `Awake()`, all colliders on the main object are converted to triggers.
+Why: the physics body lives in world coordinate space and is reused when entering/exiting the boat, going into inventory, etc. `Rigidbody.collisionDetectionMode = 3` (`ContinuousSpeculative`; vanilla can temporarily use `2` = `ContinuousDynamic` during its dynamic window — see note 67). In `Awake()`, all colliders on the main object are converted to triggers.
 
 `ItemRigidbody` additionally:
 - holds `SimpleFloatingObject` (`floater`) — items **float** in water;

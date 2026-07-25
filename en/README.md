@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-63-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-67-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
 
-Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 56 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
+Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 67 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
 
 ---
 
@@ -23,7 +23,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | Central daily hook: `Sun.OnNewDay` | [Note 18](18-time-weather-storms.md) |
 | Hidden debug mode: P+N, press T | [Note 21](21-debugger-cheats-tuning.md) |
 | Incomplete decompilation — which classes are missing | [Note 24](24-decompilation-coverage-missing-classes.md) |
-| Item framework: ShipItem → twin → ItemRigidbody | [Note 16](16-item-framework-shipitem.md) + [44](44-itemrigidbody-field-map-contract.md) |
+| Item framework: ShipItem → twin → ItemRigidbody | [Notes 16](../16-item-framework-shipitem.md), [44](../44-itemrigidbody-field-map-contract.md), [67](67-item-twin-collider-construction.md) |
 | Crash with solid twin collider | [Notes 47–56](#sailwinditemphysics-v42-crash-investigation---round-2-e1e6) |
 
 ---
@@ -91,6 +91,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 27 | [story-quests.md](27-story-quests.md) | Story: QuestDude, state machine, rewards |
 | 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Item framework: ShipItem, physics, inventory |
 | 44 | [itemrigidbody-field-map-contract.md](44-itemrigidbody-field-map-contract.md) | `ItemRigidbody`: field map, twin contract |
+| 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Twin collider construction, `ItemSubcollider`, and CCD modes |
 | 45 | [crate-cargo-prefabs-filter.md](45-crate-cargo-prefabs-filter.md) | Crates: `amount`/`containedPrefab`, loot filter |
 | 32 | [inventory-cargo-storage.md](32-inventory-cargo-storage.md) | Inventory (5 slots), cargo carriers |
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Fishing, food spoilage and preservation |
@@ -136,6 +137,14 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 61 | [item-catalog-mass-table-units.md](61-item-catalog-mass-table-units.md) | **B1+B2+B3:** PrefabsDirectory catalog, mass≈kg, UpdateMass |
 | 62 | [crate-mass-material-field.md](62-crate-mass-material-field.md) | **B4+B5:** crate mass, no material field, no sinkable items |
 | 63 | [vanilla-buoyancy-floating-cargo.md](63-vanilla-buoyancy-floating-cargo.md) | **B6+B7:** SimpleFloatingObject, floaterHeight=1.6, no floating cargo |
+
+### Additional technical notes
+| № | File | Topic |
+|---|------|------|
+| 64 | [item-classes.md](64-item-classes.md) | Base and specialized item-class reference |
+| 65 | [item-mass-buoyancy.md](65-item-mass-buoyancy.md) | `UpdateMass`, SimpleFloatingObject, layers/triggers |
+| 66 | [prefab-system.md](66-prefab-system.md) | `PrefabsDirectory`, `SaveablePrefab`, `BoatLocalItems` |
+| 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Twin collider construction, `ItemSubcollider`, CCD |
 
 ---
 

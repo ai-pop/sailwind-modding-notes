@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-63-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-67-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 56 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 67 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -23,7 +23,7 @@
 | Центральный хук нового дня: `Sun.OnNewDay` | [Заметка 18](18-time-weather-storms.md) |
 | Скрытый debug-режим: P+N, нажать T | [Заметка 21](21-debugger-cheats-tuning.md) |
 | Неполная декомпиляция — какие классы отсутствуют | [Заметка 24](24-decompilation-coverage-missing-classes.md) |
-| Фреймворк предметов: ShipItem → twin → ItemRigidbody | [Заметка 16](16-item-framework-shipitem.md) + [44](44-itemrigidbody-field-map-contract.md) |
+| Фреймворк предметов: ShipItem → twin → ItemRigidbody | [Заметки 16](16-item-framework-shipitem.md), [44](44-itemrigidbody-field-map-contract.md), [67](67-item-twin-collider-construction.md) |
 | Краш мода с твёрдым twin-коллайдером | [Заметки 47–56](#исследование-мода-sailwinditemphysics-v42---раунд-2-e1e6) |
 
 ---
@@ -91,6 +91,7 @@
 | 27 | [story-quests.md](27-story-quests.md) | Сюжет: QuestDude, автомат состояний, награды |
 | 16 | [item-framework-shipitem.md](16-item-framework-shipitem.md) | Фреймворк предметов: ShipItem, физика, инвентарь |
 | 44 | [itemrigidbody-field-map-contract.md](44-itemrigidbody-field-map-contract.md) | `ItemRigidbody`: карта полей, twin-контракт |
+| 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Twin: отложенное построение коллайдеров, `ItemSubcollider`, CCD modes |
 | 45 | [crate-cargo-prefabs-filter.md](45-crate-cargo-prefabs-filter.md) | Ящики: `amount`/`containedPrefab`, лут-фильтр |
 | 32 | [inventory-cargo-storage.md](32-inventory-cargo-storage.md) | Инвентарь (5 слотов), cargo carriers |
 | 23 | [fishing-and-food.md](23-fishing-and-food.md) | Рыбалка, порча и консервация еды |
@@ -137,6 +138,14 @@
 | 62 | [crate-mass-material-field.md](62-crate-mass-material-field.md) | **B4+B5:** crate mass, no material field, no sinkable items |
 | 63 | [vanilla-buoyancy-floating-cargo.md](63-vanilla-buoyancy-floating-cargo.md) | **B6+B7:** SimpleFloatingObject, floaterHeight=1.6, no floating cargo |
 
+### Дополнительные технические заметки
+| № | Файл | Тема |
+|---|------|------|
+| 64 | [item-classes.md](64-item-classes.md) | Справочник базовых и специализированных классов предметов |
+| 65 | [item-mass-buoyancy.md](65-item-mass-buoyancy.md) | Формулы `UpdateMass`, SimpleFloatingObject, layers/triggers |
+| 66 | [prefab-system.md](66-prefab-system.md) | `PrefabsDirectory`, `SaveablePrefab`, `BoatLocalItems` |
+| 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Построение twin-коллайдеров, `ItemSubcollider`, CCD |
+
 ---
 
 ## Техническая информация
@@ -178,10 +187,10 @@
 sailwind-modding-notes/
 ├── README.md                      ← Русский (основной)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 56-*.md   ← 56 заметок (RU)
+├── 01-textmesh-not-tmp.md ... 67-*.md   ← 67 заметок (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 56-*.md   ← 56 заметок (EN)
+    ├── 01-textmesh-not-tmp.md ... 67-*.md   ← 67 заметок (EN)
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:
