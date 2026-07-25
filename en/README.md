@@ -4,7 +4,7 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-70-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-71-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
@@ -148,6 +148,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 68 | [crate-unseal-timing-and-mass.md](68-crate-unseal-timing-and-mass.md) | Unseal timing, `amount → containedItems`, and lost vanilla aggregate mass |
 | 69 | [crate-withdraw-pickup-handoff.md](69-crate-withdraw-pickup-handoff.md) | Withdrawal race: container/UI pose → hand pose |
 | 70 | [water-splash-particle-systems.md](70-water-splash-particle-systems.md) | Vanilla water-splash ParticleSystems, materials, and Crest paths |
+| 71 | [crest-simplefloatingobject-exact-model.md](71-crest-simplefloatingobject-exact-model.md) | Exact Crest floater: cubic Acceleration, raise, drag, and ownership race |
 
 ---
 

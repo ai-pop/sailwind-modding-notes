@@ -1,5 +1,7 @@
 # 63. Vanilla buoyancy reference and cargo overboard
 
+> **Update:** an exact decompilation of `Crest.dll` is now published in [note 71](71-crest-simplefloatingobject-exact-model.md). The older discussion below about whether `SimpleFloatingObject` runs is retained as research history; use note 71 for actual cubic `ForceMode.Acceleration` lift, `_raiseObject`, drag, and ownership behavior.
+
 Breakdown of vanilla buoyancy behavior and floating cargo spawning — answer to requests B6, B7. Related to notes 43, 61.
 
 ## B6. Vanilla reference buoyancy
