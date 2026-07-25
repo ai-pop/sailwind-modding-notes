@@ -77,7 +77,7 @@ foreach (var p in PrefabsDirectory.instance.directory)
 
 - Spawned crate with `amount > 0` — **sealed**; player picks it up **in hand** (large item doesn't fit inventory slot, note 32), places on deck, RMB → unseal → contents in `CrateInventory` → extract one by one.
 - Crate **doesn't disappear** on unsealing — remains as container (note 33).
-- Crate mass = `crate.mass + contained.mass * amount` (`UpdateMass`, note 44) — full crate is heavy.
+- A **sealed** crate mass is `crate.mass + contained.mass * amount` (`UpdateMass`, note 44). After unsealing, `amount` becomes 0 and live goods move into `CrateInventory.containedItems`; vanilla does not aggregate that list back into crate mass — see note 68.
 
 ## Practical Takeaways
 
