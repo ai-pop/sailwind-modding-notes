@@ -58,6 +58,7 @@ PrefabsDirectory.ItemToGoodIndex(itemIndex)
 | 06 | [Sails](06-sails.md) | All sail prefabs by region (Aestrin/Medi/Emerald/Large) |
 | 07 | [Trade Goods](07-trade-goods.md) | Bulk cargo, crates, barrels, regional goods |
 | 08 | [Data Tables](08-data-tables.md) | Liquids, categories, food states, fish list |
+| 09 | [Supplemental](09-supplemental.md) | Fishing, quests, boat parts, starter sets |
 
 ---
 
