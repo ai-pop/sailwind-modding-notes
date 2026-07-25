@@ -4,7 +4,7 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-68-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-69-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
@@ -146,6 +146,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 66 | [prefab-system.md](66-prefab-system.md) | `PrefabsDirectory`, `SaveablePrefab`, `BoatLocalItems` |
 | 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Twin collider construction, `ItemSubcollider`, CCD |
 | 68 | [crate-unseal-timing-and-mass.md](68-crate-unseal-timing-and-mass.md) | Unseal timing, `amount → containedItems`, and lost vanilla aggregate mass |
+| 69 | [crate-withdraw-pickup-handoff.md](69-crate-withdraw-pickup-handoff.md) | Withdrawal race: container/UI pose → hand pose |
 
 ---
 

@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-68-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-69-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 68 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 69 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -146,6 +146,7 @@
 | 66 | [prefab-system.md](66-prefab-system.md) | `PrefabsDirectory`, `SaveablePrefab`, `BoatLocalItems` |
 | 67 | [item-twin-collider-construction.md](67-item-twin-collider-construction.md) | Построение twin-коллайдеров, `ItemSubcollider`, CCD |
 | 68 | [crate-unseal-timing-and-mass.md](68-crate-unseal-timing-and-mass.md) | Вскрытие: `amount → containedItems`, timing и потеря vanilla aggregate mass |
+| 69 | [crate-withdraw-pickup-handoff.md](69-crate-withdraw-pickup-handoff.md) | Извлечение: race container/UI pose → hand pose |
 
 ---
 
@@ -188,10 +189,10 @@
 sailwind-modding-notes/
 ├── README.md                      ← Русский (основной)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 68-*.md   ← 68 заметок (RU)
+├── 01-textmesh-not-tmp.md ... 69-*.md   ← 69 заметок (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 68-*.md   ← 68 заметок (EN)
+    ├── 01-textmesh-not-tmp.md ... 69-*.md   ← 69 заметок (EN)
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:
