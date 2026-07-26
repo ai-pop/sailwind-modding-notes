@@ -4,7 +4,7 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-75-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-76-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
@@ -153,6 +153,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 73 | [crest-wave-spectrum-lod-simulation.md](73-crest-wave-spectrum-lod-simulation.md) | 14-octave Gerstner, spectrum, LOD, dynamic waves/flow/foam |
 | 74 | [crest-water-interactions-rendering-origin.md](74-crest-water-interactions-rendering-origin.md) | BoatProbes, interaction, underwater, depth, reflections, Crest origin |
 | 75 | [crest-dll-complete-type-index.md](75-crest-dll-complete-type-index.md) | Complete source map of all 80 `Crest.dll` types |
+| 76 | [dock-push-collider-layer-switch.md](76-dock-push-collider-layer-switch.md) | `DockPushCol`: layer switch, dock collider, cargo penetration risk |
 
 ---
 
