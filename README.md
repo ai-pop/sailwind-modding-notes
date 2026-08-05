@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-81-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-85-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 81 заметка покрывает: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 85 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -72,6 +72,9 @@
 | 40 | [hull-dirt-cleaning.md](40-hull-dirt-cleaning.md) | Грязь корпуса и чистка (MasterPainter) |
 | 79 | [advanced-rigging-sail-masters-and-topsail-mirroring.md](79-advanced-rigging-sail-masters-and-topsail-mirroring.md) | Продвинутый такелаж: AngleMasters, самовыравнивание, марсели |
 | 80 | [rudder-hydrodynamics-centering-force-and-steering-torque.md](80-rudder-hydrodynamics-centering-force-and-steering-torque.md) | Гидродинамика руля: момент, сопротивление, центрирующая сила |
+| 82 | [floating-origin-shifting-rigidbody-and-momentum-preservation.md](82-floating-origin-shifting-rigidbody-and-momentum-preservation.md) | Плавающий центр мира: ShiftingRigidbody, скачки PhysX, импульс |
+| 83 | [anisotropic-drag-and-fender-contact-physics.md](83-anisotropic-drag-and-fender-contact-physics.md) | Анизотропное сопротивление (DirectionalDrag) и кранцы (Fender) |
+| 85 | [anchor-joint-physics-seabed-setting-and-stowed-mass-reduction.md](85-anchor-joint-physics-seabed-setting-and-stowed-mass-reduction.md) | Физика якоря: ConfigurableJoint, зацепление, уменьшение массы |
 
 ### Мир, время, океан
 | № | Файл | Тема |
@@ -101,6 +104,7 @@
 | 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Спавн предметов, подбор, плавучесть |
 | 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Пример: плавающие лут-ящики (BepInEx рецепт) |
 | 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Пример: фаст-тревел/телепорт |
+| 84 | [pickupable-item-collision-checker-and-decollision.md](84-pickupable-item-collision-checker-and-decollision.md) | Физика удерживаемых предметов: проверка столкновений и деколлизия |
 
 ### Население, NPC, диалоги и AI
 | № | Файл | Тема |
@@ -201,10 +205,10 @@
 sailwind-modding-notes/
 ├── README.md                      ← Русский (основной)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 заметка (RU)
+├── 01-textmesh-not-tmp.md ... 85-*.md   ← 85 заметок (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 заметка (EN)
+    ├── 01-textmesh-not-tmp.md ... 85-*.md   ← 85 заметок (EN)
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:

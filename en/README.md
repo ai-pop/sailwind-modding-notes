@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-81-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-85-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
 
-Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 81 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
+Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 85 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
 
 ---
 
@@ -72,6 +72,9 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 40 | [hull-dirt-cleaning.md](40-hull-dirt-cleaning.md) | Hull dirt and cleaning (MasterPainter) |
 | 79 | [advanced-rigging-sail-masters-and-topsail-mirroring.md](79-advanced-rigging-sail-masters-and-topsail-mirroring.md) | Advanced rigging: AngleMasters, self-righting, topsails |
 | 80 | [rudder-hydrodynamics-centering-force-and-steering-torque.md](80-rudder-hydrodynamics-centering-force-and-steering-torque.md) | Rudder hydrodynamics: yaw torque, drag, centering force |
+| 82 | [floating-origin-shifting-rigidbody-and-momentum-preservation.md](82-floating-origin-shifting-rigidbody-and-momentum-preservation.md) | Floating origin: ShiftingRigidbody, PhysX jumps, momentum |
+| 83 | [anisotropic-drag-and-fender-contact-physics.md](83-anisotropic-drag-and-fender-contact-physics.md) | Anisotropic drag (DirectionalDrag) & Fender contact physics |
+| 85 | [anchor-joint-physics-seabed-setting-and-stowed-mass-reduction.md](85-anchor-joint-physics-seabed-setting-and-stowed-mass-reduction.md) | Anchor physics: ConfigurableJoint, setting, stowed mass reduction |
 
 ### World, Time, Ocean
 | № | File | Topic |
@@ -101,6 +104,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 33 | [item-spawning-pickup.md](33-item-spawning-pickup.md) | Item spawning, pickup, buoyancy |
 | 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Example: floating loot crates (BepInEx recipe) |
 | 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Example: fast travel/teleport |
+| 84 | [pickupable-item-collision-checker-and-decollision.md](84-pickupable-item-collision-checker-and-decollision.md) | Held item physics: collision checking and decollision |
 
 ### Population, NPCs, Dialogues, and AI
 | № | File | Topic |
@@ -201,10 +205,10 @@ In vanilla twin = isTrigger — "transparent" for boat CapsuleCollider. Mod Sail
 sailwind-modding-notes/
 ├── README.md                      ← Russian (primary)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 notes (RU)
+├── 01-textmesh-not-tmp.md ... 85-*.md   ← 85 notes (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 notes (EN)
+    ├── 01-textmesh-not-tmp.md ... 85-*.md   ← 85 notes (EN)
 ```
 
 Each note is a standalone Markdown document with:
