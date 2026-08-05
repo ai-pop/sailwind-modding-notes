@@ -147,6 +147,16 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 62 | [crate-mass-material-field.md](62-crate-mass-material-field.md) | **B4+B5:** crate mass, no material field, no sinkable items |
 | 63 | [vanilla-buoyancy-floating-cargo.md](63-vanilla-buoyancy-floating-cargo.md) | **B6+B7:** SimpleFloatingObject, floaterHeight=1.6, no floating cargo |
 
+### SailwindItemPhysics investigation — Round 4 (Throwing, Obstruction, Anchors, and Hold Inertia)
+> Obstructed drop ejection, hold cursor inertia, anchor exclusion, SafeDropAndThrowResolver.
+
+| № | File | Topic |
+|---|------|------|
+| 86 | [obstructed-drop-ejection-why-items-shoot-away.md](86-obstructed-drop-ejection-why-items-shoot-away.md) | Obstructed drop ejection: why items shoot away & how vanilla reshuffles them |
+| 87 | [visual-inertia-and-cursor-lag-in-item-holding.md](87-visual-inertia-and-cursor-lag-in-item-holding.md) | Held item inertia: why crates lag behind cursor & how to balance hold modes |
+| 88 | [anchor-physics-exclusion-why-anchors-require-separate-handling.md](88-anchor-physics-exclusion-why-anchors-require-separate-handling.md) | Anchor physics exclusion: why anchors cannot be thrown like normal cargo |
+| 89 | [worked-example-safe-obstructed-drop-and-throw-resolver.md](89-worked-example-safe-obstructed-drop-and-throw-resolver.md) | Worked example: Safe obstructed drop and throw resolver for physics mods |
+
 ### Additional technical notes
 | № | File | Topic |
 |---|------|------|

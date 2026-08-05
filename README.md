@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-85-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-89-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 85 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 89 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -146,6 +146,16 @@
 | 61 | [item-catalog-mass-table-units.md](61-item-catalog-mass-table-units.md) | **B1+B2+B3:** PrefabsDirectory каталог, mass≈кг, UpdateMass |
 | 62 | [crate-mass-material-field.md](62-crate-mass-material-field.md) | **B4+B5:** crate mass, no material field, no sinkable items |
 | 63 | [vanilla-buoyancy-floating-cargo.md](63-vanilla-buoyancy-floating-cargo.md) | **B6+B7:** SimpleFloatingObject, floaterHeight=1.6, no floating cargo |
+
+### Исследование мода SailwindItemPhysics — раунд 4 (Бросок, перекрытие, якорь и инерция удержания)
+> Отлеты при броске с перекрытием, инерция курсора в руках, специфика якорей, SafeDropAndThrowResolver.
+
+| № | Файл | Тема |
+|---|------|------|
+| 86 | [obstructed-drop-ejection-why-items-shoot-away.md](86-obstructed-drop-ejection-why-items-shoot-away.md) | Бросок с перекрытием: почему предметы отлетают и как ваниль их перераскладывает |
+| 87 | [visual-inertia-and-cursor-lag-in-item-holding.md](87-visual-inertia-and-cursor-lag-in-item-holding.md) | Инерция предметов в руках: почему коробки отстают от курсора и как это балансировать |
+| 88 | [anchor-physics-exclusion-why-anchors-require-separate-handling.md](88-anchor-physics-exclusion-why-anchors-require-separate-handling.md) | Исключение якорей из общей физики: почему якорь нельзя бросать как обычный груз |
+| 89 | [worked-example-safe-obstructed-drop-and-throw-resolver.md](89-worked-example-safe-obstructed-drop-and-throw-resolver.md) | Пример кода: безопасный сброс при перекрытии и резолвер броска для модов на физику |
 
 ### Дополнительные технические заметки
 | № | Файл | Тема |
