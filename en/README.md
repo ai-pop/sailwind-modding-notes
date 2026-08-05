@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-76-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-80-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
 
-Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 67 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
+Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 80 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
 
 ---
 
@@ -70,6 +70,8 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 22 | [shipyard-customization-purchase.md](22-shipyard-customization-purchase.md) | Shipyard: boat customization, purchase |
 | 38 | [ropes-rigging-steering.md](38-ropes-rigging-steering.md) | Rigging: steering wheel (rudder spring), winches, autopilot |
 | 40 | [hull-dirt-cleaning.md](40-hull-dirt-cleaning.md) | Hull dirt and cleaning (MasterPainter) |
+| 79 | [advanced-rigging-sail-masters-and-topsail-mirroring.md](79-advanced-rigging-sail-masters-and-topsail-mirroring.md) | Advanced rigging: AngleMasters, self-righting, topsails |
+| 80 | [rudder-hydrodynamics-centering-force-and-steering-torque.md](80-rudder-hydrodynamics-centering-force-and-steering-torque.md) | Rudder hydrodynamics: yaw torque, drag, centering force |
 
 ### World, Time, Ocean
 | № | File | Topic |
@@ -100,10 +102,12 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 34 | [worked-example-floating-loot.md](34-worked-example-floating-loot.md) | Example: floating loot crates (BepInEx recipe) |
 | 42 | [worked-example-fast-travel.md](42-worked-example-fast-travel.md) | Example: fast travel/teleport |
 
-### Population
+### Population, NPCs, Dialogues, and AI
 | № | File | Topic |
 |---|------|------|
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPCs: waypoint boats, fishermen, PortDude, Shopkeeper |
+| 77 | [npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md](77-npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md) | NPC AI: navigation, collision avoidance, waypoint graphs, daily routines |
+| 78 | [dialogues-rumors-bribery-and-contraband-customs.md](78-dialogues-rumors-bribery-and-contraband-customs.md) | Dialogues, tavern rumors, procedural NPC animation, customs & bribery |
 
 ### SailwindItemPhysics v4.2 crash investigation — Round 1 (A1–A5, B6–B12, C13–C14, D15)
 | № | File | Topic |
@@ -196,10 +200,10 @@ In vanilla twin = isTrigger — "transparent" for boat CapsuleCollider. Mod Sail
 sailwind-modding-notes/
 ├── README.md                      ← Russian (primary)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 56-*.md   ← 56 notes (RU)
+├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 notes (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 56-*.md   ← 56 notes (EN)
+    ├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 notes (EN)
 ```
 
 Each note is a standalone Markdown document with:
