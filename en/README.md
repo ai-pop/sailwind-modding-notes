@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-80-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-81-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [Russian version → `../README.md`](../README.md)
 
-Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 80 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
+Complete documentation on the architecture and internals of **Sailwind** (v0.38), obtained by decompiling `Assembly-CSharp.dll` and runtime analysis. 81 notes cover: save systems, economy, hull physics and ocean, items (twin model), weather, NPCs, UI/text, cameras, coordinate systems, and full breakdown of the SailwindItemPhysics v4.2 crash (held-item twin colliding with boat).
 
 ---
 
@@ -108,6 +108,7 @@ Complete documentation on the architecture and internals of **Sailwind** (v0.38)
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPCs: waypoint boats, fishermen, PortDude, Shopkeeper |
 | 77 | [npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md](77-npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md) | NPC AI: navigation, collision avoidance, waypoint graphs, daily routines |
 | 78 | [dialogues-rumors-bribery-and-contraband-customs.md](78-dialogues-rumors-bribery-and-contraband-customs.md) | Dialogues, tavern rumors, procedural NPC animation, customs & bribery |
+| 81 | [human-npcs-behavior-animation-and-why-there-is-no-navigation.md](81-human-npcs-behavior-animation-and-why-there-is-no-navigation.md) | Human NPCs: behavior, animation, trading, why no navigation |
 
 ### SailwindItemPhysics v4.2 crash investigation — Round 1 (A1–A5, B6–B12, C13–C14, D15)
 | № | File | Topic |
@@ -200,10 +201,10 @@ In vanilla twin = isTrigger — "transparent" for boat CapsuleCollider. Mod Sail
 sailwind-modding-notes/
 ├── README.md                      ← Russian (primary)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 notes (RU)
+├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 notes (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 notes (EN)
+    ├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 notes (EN)
 ```
 
 Each note is a standalone Markdown document with:

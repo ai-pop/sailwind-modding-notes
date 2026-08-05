@@ -4,12 +4,12 @@
 [![Backend](https://img.shields.io/badge/Mono-primary%20%7C%20IL2CPP-exp.-orange)]()
 [![Framework](https://img.shields.io/badge/BepInEx-5.4.23.5_(HarmonyX)-purple)]()
 [![Game version](https://img.shields.io/badge/Sailwind-v0.38-green)]()
-[![Notes](https://img.shields.io/badge/notes-80-brightgreen)]()
+[![Notes](https://img.shields.io/badge/notes-81-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
 
 > [English version → `en/README.md`](en/README.md)
 
-Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 80 заметок покрывают: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
+Полная документация по архитектуре и внутреннему устройству игры **Sailwind** (v0.38), полученная декомпиляцией `Assembly-CSharp.dll` и runtime-анализом. 81 заметка покрывает: системы сохранений, экономики, физики корпуса и океана, предметов (twin-модель), погоды, NPC, UI/текст, камеры, координатные системы и полный разбор бага мода SailwindItemPhysics v4.2 (краш при столкновении held-item twin с лодкой).
 
 ---
 
@@ -108,6 +108,7 @@
 | 20 | [npcs-world-population.md](20-npcs-world-population.md) | NPC: waypoint boats, рыбаки, PortDude, Shopkeeper |
 | 77 | [npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md](77-npc-ai-navigation-collision-avoidance-and-waypoint-graphs.md) | AI NPC: навигация, избегание столкновений, графы путей, распорядок |
 | 78 | [dialogues-rumors-bribery-and-contraband-customs.md](78-dialogues-rumors-bribery-and-contraband-customs.md) | Диалоги, слухи в таверне, анимации NPC, таможня и контрабанда |
+| 81 | [human-npcs-behavior-animation-and-why-there-is-no-navigation.md](81-human-npcs-behavior-animation-and-why-there-is-no-navigation.md) | Люди-NPC: поведение, анимация, торговля, почему нет навигации |
 
 ### Исследование мода SailwindItemPhysics v4.2 — раунд 1 (A1–A5, B6–B12, C13–C14, D15)
 | № | Файл | Тема |
@@ -200,10 +201,10 @@
 sailwind-modding-notes/
 ├── README.md                      ← Русский (основной)
 ├── LICENSE                        ← MIT
-├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 заметок (RU)
+├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 заметка (RU)
 └── en/
     ├── README.md                  ← English translation
-    ├── 01-textmesh-not-tmp.md ... 80-*.md   ← 80 заметок (EN)
+    ├── 01-textmesh-not-tmp.md ... 81-*.md   ← 81 заметка (EN)
 ```
 
 Каждая заметка — самостоятельный Markdown-документ с:
